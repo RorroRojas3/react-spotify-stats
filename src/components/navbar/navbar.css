@@ -1,0 +1,7 @@
+.bg-dark {
+  background-color: #191414 !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(255, 255, 255);
+}
