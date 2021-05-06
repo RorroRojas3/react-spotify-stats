@@ -1,8 +1,10 @@
-import MyNavbar from "./components/navbar/myNavbar";
+// My components
+import Routes from "./routes/routes";
+
 function App() {
   return (
     <div>
-      <MyNavbar />
+      <Routes />
     </div>
   );
 }
