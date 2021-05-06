@@ -11,7 +11,12 @@ const Callback = () => {
       window.location.hash.replace("#", "?")
     );
     const accessToken = urlParams.get("access_token");
-    console.log(accessToken);
+
+    if (accessToken === null) {
+      alert("User denied login");
+      return;
+    }
+
     axios
       .get("https://api.spotify.com/v1/me", {
         headers: {
@@ -27,6 +32,16 @@ const Callback = () => {
           accessToken: accessToken,
           isLoggedIn: true,
         });
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            name: response.data.display_name,
+            email: response.data.email,
+            image: response.data.images[0].url,
+            accessToken: accessToken,
+            isLoggedIn: true,
+          })
+        );
         setRedirect(true);
       })
       .catch(function (error) {

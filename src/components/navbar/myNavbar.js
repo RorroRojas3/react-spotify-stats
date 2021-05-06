@@ -13,13 +13,13 @@ const MyNavbar = () => {
   const signIn = () => {
     let clientId = "dcd665bd6a2f4855a2b69d35b4be45d4";
     let redirectUrl = "http://localhost:3000/callback";
-    let url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=user-read-private%20user-read-email&response_type=token&state=123`;
+    let url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=user-read-private%20user-read-email%20playlist-read-collaborative%20user-follow-read%20user-top-read&response_type=token&state=123`;
     window.location.replace(url);
   };
 
   const [modalShow, setModalShow] = useState(false);
   const [user] = useContext(UserContext);
-  console.log(user);
+
   return (
     <div>
       <SignInModal show={modalShow} onHide={() => setModalShow(false)} />
@@ -44,10 +44,10 @@ const MyNavbar = () => {
               Github
             </Nav.Link>
           </Nav>
+          <Button variant="dark" onClick={() => signIn()}>
+            {!user.isLoggedIn ? "Sign In" : "Sign Out"}
+          </Button>{" "}
         </Navbar.Collapse>
-        <Button variant="dark" onClick={() => signIn()}>
-          {!user.isLoggedIn ? "Sign In" : "Sign Out"}
-        </Button>{" "}
       </Navbar>
     </div>
   );
