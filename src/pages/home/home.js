@@ -52,10 +52,10 @@ const Home = () => {
       <>
         <Jumbotron fluid>
           <Row>
-            <Col className="text-center">
-              <Image src={user.image} />
+            <Col sm={6} className="text-center">
+              <Image src={user.image} fluid />
             </Col>
-            <Col className="text-center">
+            <Col sm={6} className="text-center">
               <h1>Welcome</h1>
               <h2>{user.name}</h2>
             </Col>
@@ -80,7 +80,7 @@ const Home = () => {
             );
           })}
         </CardDeck>
-        <h1>Favorite Tracks</h1>
+        <h1 className="mt-5">Favorite Tracks</h1>
         <CardDeck>
           {topTracks.map((tracks) => {
             return (
@@ -112,6 +112,7 @@ const Home = () => {
             );
           })}
         </CardDeck>
+        <br className="mt-5" />
       </>
     );
   };
