@@ -1,5 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Image,
+  Jumbotron,
+  Card,
+  CardDeck,
+} from "react-bootstrap";
 import axios from "axios";
 
 // Context
@@ -38,16 +46,80 @@ const Home = () => {
     };
     fetchData();
   }, [user]);
+
+  const userSignedIn = () => {
+    return (
+      <>
+        <Jumbotron fluid>
+          <Row>
+            <Col className="text-center">
+              <Image src={user.image} />
+            </Col>
+            <Col className="text-center">
+              <h1>Welcome</h1>
+              <h2>{user.name}</h2>
+            </Col>
+          </Row>
+        </Jumbotron>
+        <h1>Favorite Artists</h1>
+        <CardDeck>
+          {topArtists.map((artist) => {
+            return (
+              <Card>
+                <Card.Img src={artist.images[0].url} />
+                <Card.Body>
+                  <Card.Title>{artist.name}</Card.Title>
+                  <Card.Link
+                    target="_blank"
+                    href={artist.external_urls.spotify}
+                  >
+                    Open on Spotify
+                  </Card.Link>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardDeck>
+        <h1>Favorite Tracks</h1>
+        <CardDeck>
+          {topTracks.map((tracks) => {
+            return (
+              <Card>
+                <Card.Img src={tracks.album.images[0].url} />
+                <Card.Body>
+                  <Card.Title>Artist: {tracks.artists[0].name}</Card.Title>
+                </Card.Body>
+                <Card.Body>
+                  <Card.Title>Album: {tracks.album.name}</Card.Title>
+                </Card.Body>
+                <Card.Body>
+                  <Card.Title>Track: {tracks.name}</Card.Title>
+                </Card.Body>
+                <Card.Body>
+                  <audio>
+                    <source src={tracks.preview_url} type="audio/mpeg"></source>
+                  </audio>
+                </Card.Body>
+                <Card.Body>
+                  <Card.Link
+                    target="_blank"
+                    href={tracks.external_urls.spotify}
+                  >
+                    Open on Spotify
+                  </Card.Link>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardDeck>
+      </>
+    );
+  };
+
   return (
     <>
       <Container className="mt-5">
-        <Row>
-          <Col>
-            <Image src={user.image} />
-          </Col>
-          <Col>Welcome: {user.name}</Col>
-        </Row>
-        <Row></Row>
+        {user.isLoggedIn && userSignedIn()}
       </Container>
     </>
   );
