@@ -32,16 +32,6 @@ const Callback = () => {
           accessToken: accessToken,
           isLoggedIn: true,
         });
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            name: response.data.display_name,
-            email: response.data.email,
-            image: response.data.images[0].url,
-            accessToken: accessToken,
-            isLoggedIn: true,
-          })
-        );
         setRedirect(true);
       })
       .catch(function (error) {
