@@ -13,6 +13,9 @@ import axios from "axios";
 // Context
 import { UserContext } from "../../context/userContext";
 
+// Images
+import SpotifyIcon from "../../images/icons/spotifyIcon.png";
+
 const Home = () => {
   const [user] = useContext(UserContext);
   const [topArtists, setTopArtist] = useState([]);
@@ -46,6 +49,23 @@ const Home = () => {
     };
     fetchData();
   }, [user]);
+
+  const userNotSignedIn = () => {
+    return (
+      <>
+        <Jumbotron>
+          <Row className="text-center align-items-center">
+            <Col>
+              <h1>Please Login to Spotify</h1>
+            </Col>
+            <Col>
+              <Image width="50%" height="50%" fluid src={SpotifyIcon} />
+            </Col>
+          </Row>
+        </Jumbotron>
+      </>
+    );
+  };
 
   const userSignedIn = () => {
     return (
@@ -96,9 +116,13 @@ const Home = () => {
                   <Card.Title>Track: {tracks.name}</Card.Title>
                 </Card.Body>
                 <Card.Body>
-                  <audio>
-                    <source src={tracks.preview_url} type="audio/mpeg"></source>
-                  </audio>
+                  <Row>
+                    <audio
+                      src={tracks.preview_url}
+                      controls
+                      preload="auto"
+                    ></audio>
+                  </Row>
                 </Card.Body>
                 <Card.Body>
                   <Card.Link
@@ -120,7 +144,7 @@ const Home = () => {
   return (
     <>
       <Container className="mt-5">
-        {user.isLoggedIn && userSignedIn()}
+        {user.isLoggedIn ? userSignedIn() : userNotSignedIn()}
       </Container>
     </>
   );

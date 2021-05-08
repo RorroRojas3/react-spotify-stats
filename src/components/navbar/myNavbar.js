@@ -44,9 +44,11 @@ const MyNavbar = () => {
               Github
             </Nav.Link>
           </Nav>
-          <Button variant="dark" onClick={() => signIn()}>
-            {!user.isLoggedIn ? "Sign In" : "Sign Out"}
-          </Button>{" "}
+          {!user.isLoggedIn && (
+            <Button variant="dark" onClick={() => signIn()}>
+              Sign In
+            </Button>
+          )}
         </Navbar.Collapse>
       </Navbar>
     </div>
