@@ -11,8 +11,8 @@ import { UserContext } from "../../context/userContext";
 
 const MyNavbar = () => {
   const signIn = () => {
-    let clientId = "dcd665bd6a2f4855a2b69d35b4be45d4";
-    let redirectUrl = "http://localhost:3000/callback";
+    let clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+    let redirectUrl = process.env.REACT_APP_SPOTIFY_REDIRECT_URL;
     let url = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=user-read-private%20user-read-email%20playlist-read-collaborative%20user-follow-read%20user-top-read&response_type=token&state=123`;
     window.location.replace(url);
   };

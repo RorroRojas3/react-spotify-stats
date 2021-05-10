@@ -14,7 +14,7 @@ const Routes = () => {
     <div>
       <UserContextProvider>
         <MyNavbar />
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route exact path="/">
               <Home />

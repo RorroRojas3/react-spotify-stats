@@ -1,5 +1,6 @@
 {
-  "name": "react-spotify-status",
+  "name": "react-spotify-stats",
+  "homepage": "rorrorojas3.github.io/react-spotify-stats/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +10,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "framer-motion": "^4.1.11",
+    "gh-pages": "^3.1.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.2",
@@ -17,8 +19,10 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start .env.development",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "build": "react-scripts build .env.production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
