@@ -39,7 +39,7 @@ const MyNavbar = () => {
           <Nav className="mr-auto">
             <Nav.Link
               target="_blank"
-              href="https://github.com/RorroRojas3/React-Spotify-Status"
+              href="https://github.com/RorroRojas3/react-spotify-stats"
             >
               Github
             </Nav.Link>
