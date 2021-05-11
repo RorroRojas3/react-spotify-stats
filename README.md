@@ -1,6 +1,6 @@
 # Project 
 
-Doge Fitness
+Spotify Stats
 
 ## Description
 
